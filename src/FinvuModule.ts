@@ -1,12 +1,5 @@
-import { NativeModule, requireNativeModule } from 'expo';
+import { requireNativeModule } from 'expo-modules-core';
 
-import { FinvuModuleEvents } from './Finvu.types';
-
-declare class FinvuModule extends NativeModule<FinvuModuleEvents> {
-  PI: number;
-  hello(): string;
-  setValueAsync(value: string): Promise<void>;
-}
-
-// This call loads the native module object from the JSI.
-export default requireNativeModule<FinvuModule>('Finvu');
+// It loads the native module object from the JSI or falls back to
+// the bridge module (from NativeModulesProxy) if the remote debugger is on.
+export default requireNativeModule('Finvu');
